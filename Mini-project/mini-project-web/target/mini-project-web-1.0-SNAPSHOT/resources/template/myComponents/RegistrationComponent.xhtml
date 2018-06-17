@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:composite="http://xmlns.jcp.org/jsf/composite"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <composite:interface>
+
+    </composite:interface>
+
+    <composite:implementation>
+        
+        <h:form id="reg" styleClass="form">
+            <p:tooltip />
+            <h5>
+                Please fill out the form!
+            </h5>
+
+            <div class="form-group">
+                <p:outputLabel for="user-input-name" value="Name : "/>
+                <p:inputText id="user-input-name" styleClass="form-control" required="true" value="#{appUserController.user.name}" validatorMessage="Value is not valid">
+                    <p:clientValidator />
+                    <f:validator validatorId="nameValidator" />
+                </p:inputText>
+                <p:message for="user-input-name" display="tooltip" />
+            </div>
+            <div class="form-group">
+                <p:outputLabel for="user-input-email" value="Email : "/>
+                <p:inputText id="user-input-email" styleClass="form-control" required="true" value="#{appUserController.user.email}" validatorMessage="Value is not valid">
+                    <p:clientValidator />
+                    <f:validator validatorId="emailValidator"/>
+                </p:inputText>
+                <p:message for="user-input-email" display="tooltip" />
+            </div>
+            <div class="form-group">
+                <p:outputLabel for="user-input-password" value="Password : "/>
+                <p:password id="user-input-password" styleClass="form-control" required="true" value="#{appUserController.user.password}" validatorMessage="Value required">
+                    <p:clientValidator />
+                </p:password>
+                <p:message for="user-input-password" display="tooltip"/>
+            </div>
+            <div class="form-group">
+                <h:outputLabel styleClass="label-style" value="Allergies and Intolerances : "/>
+                <h:selectManyCheckbox  styleClass="form-control" label="allergies" value="#{appUserController.allergyList}">
+                    <f:selectItems class="form-control-plaintext" value="#{allergiesController.allergies}"></f:selectItems>
+                </h:selectManyCheckbox>
+            </div>  
+            <div class="form-group ">
+                <div class="foodInfoDetail">
+                    <div class="form-group detail-cell">
+                        <p:outputLabel for="user-input-password" styleClass="intake-limits-label" 
+                                       value="Daily calories limit: "/>
+                        <p:inputNumber id="limit-kcal" value="#{appUserController.user.limitKcal}" 
+                                       styleClass="intake-limits" maxlength="7" />
+                    </div>
+                    <div class="form-group detail-cell">
+                        <p:outputLabel for="user-input-password" styleClass="intake-limits-label" 
+                                       value="Daily carb limit: "/>
+                        <p:inputNumber id="limit-carb" value="#{appUserController.user.limitCarb}" 
+                                       styleClass="intake-limits"  maxlength="7" />
+                    </div>
+                </div>
+                <div class="foodInfoDetail">
+                    <div class="form-group detail-cell">
+                        <p:outputLabel for="user-input-password" styleClass="intake-limits-label" 
+                                       value="Daily protein limit: "/>
+                        <p:inputNumber id="limit-prot" value="#{appUserController.user.limitProt}" 
+                                       styleClass="intake-limits"  maxlength="7" />
+                    </div>
+                    <div class="form-group detail-cell">
+                        <p:outputLabel for="user-input-password" styleClass="intake-limits-label" 
+                                       value="Daily fat limit: "/>
+                        <p:inputNumber id="limit-fat" value="#{appUserController.user.limitFat}" 
+                                       styleClass="intake-limits" maxlength="7" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group ">
+                <p:commandButton id="new-user" value="Submit" styleClass="btn btn-success btn-block" 
+                                 ajax="false" update="registration-comp:reg welcome" validateClient="false" 
+                                 action="#{appUserController.createNewUser()}">
+                </p:commandButton>
+            </div>
+
+        </h:form>
+
+    </composite:implementation>
+</html>
+

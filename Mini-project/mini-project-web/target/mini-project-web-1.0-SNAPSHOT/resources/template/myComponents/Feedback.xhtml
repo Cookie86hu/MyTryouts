@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:composite="http://xmlns.jcp.org/jsf/composite"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <composite:interface>
+    </composite:interface>
+    <composite:implementation>
+        <h:outputLabel styleClass="form-group" value="Tell us what you think: "/>
+        <h:form styleClass="form">
+            <div class="form-group">
+                <h:inputTextarea rows="10" styleClass="form-control"/>
+            </div>
+            <div class="form-group">
+                <h:commandButton value="Send It Bitch" styleClass="btn btn-dark" action="#{bean.sendMSG}"/>
+            </div>
+        </h:form>
+
+    </composite:implementation>
+</html>

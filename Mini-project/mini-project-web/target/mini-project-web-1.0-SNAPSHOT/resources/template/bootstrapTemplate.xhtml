@@ -1,0 +1,140 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <meta name="description" content=""/>
+        <meta name="author" content=""/>
+
+        <title>Eat or Not to Eat...</title>
+
+        <!-- Bootstrap core CSS -->
+        <h:outputStylesheet name="bootstrap-4.1.0-dist/css/bootstrap.min.css"/>
+        <h:outputStylesheet name="css/mini-css.css"/>
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <f:verbatim>
+            <!--[if lt IE 9]>
+              <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+              <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+            <![endif]-->    
+        </f:verbatim>
+        <ui:insert name="head"/>
+    </h:head>
+    <h:body id="body1">
+        <section class="header-template">
+            <div>
+                <h1>
+                    Welcome to my page!
+                </h1>
+            </div>
+            <p:messages id="welcome" for="new-user"></p:messages>
+        </section>
+        <section class="menu-area">
+            <nav class="navbar navbar-dark bg-dark navbar-expand-md justify-content-center" id="navbar">
+                <a href="StartingPage.xhtml" class="navbar-brand d-flex w-50 mr-auto">
+                    <img id="monster" class="img-responsive"
+                         src="https://i.ebayimg.com/images/g/HI8AAOSwFNZWyWQR/s-l300.jpg"/>
+                </a>
+                
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar3">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse w-100" id="collapsingNavbar3">
+                    <ul class="navbar-nav w-100 justify-content-center">
+                        <li class="nav-item">
+                            <h:link class="nav-link" outcome="/OpenPage.xhtml">Food info</h:link>
+                        </li>
+                        <li class="nav-item">
+                            <h:link class="nav-link" outcome="/restricted/ClosedPage.xhtml">Meal Plan</h:link>
+                        </li>
+                        <li class="nav-item">
+                            <h:link class="nav-link" outcome="/restricted/Statistics.xhtml">Statistics</h:link>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">About us</a>
+                        </li>
+                    </ul>
+                    <p:fragment id="login-logout">
+                        <ul class="nav navbar-nav ml-auto w-100 justify-content-end navbar-right">
+                            <li class="dropdown nav-item">
+                                <p:fragment rendered="#{loginBean.renderLogOut()}">
+                                    <div class="form-group">
+                                        <p:commandButton value="Sign out" update="login-logout" styleClass="btn btn-success btn-block" action="#{loginBean.logout()}"/>
+                                    </div> 
+                                </p:fragment>
+                                <p:fragment rendered="#{loginBean.renderLogin()}">
+                                    <a href="/" class="dropdown-toggle" data-toggle="dropdown">Sign in<b
+                                            class="caret"></b></a>
+                                    <ul class="dropdown-menu dropdown-menu-right" style="padding: 15px; min-width: 250px;">
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <h:form styleClass="form" role="form" id="login-nav">
+                                                        <!-- idáig jó-->
+                                                        <div class="form-group">
+                                                            <p:outputLabel styleClass="label-style" for="exampleInputEmail2" value="Email : "/>
+                                                            <p:inputText styleClass="form-control" id="exampleInputEmail2" label="j_username" value="#{loginBean.user.email}"/>      
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <p:outputLabel styleClass="label-style" for="exampleInputPassword2" value="Password : "/>
+                                                            <p:password styleClass="form-control" id="exampleInputPassword2" label="j_password" value="#{loginBean.user.password}"/>      
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <p:commandButton value="Sign in" update="login-logout" rendered="true" styleClass="btn btn-success btn-block" action="#{loginBean.login()}"/>
+                                                        </div>
+                                                    </h:form>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </p:fragment>
+                            </li>
+                        </ul>
+                    </p:fragment>
+                </div>
+            </nav>
+        </section>
+        <section  class="first-line container-fluid">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-5">
+                    <div class="container-fluid " id="first-form-container">
+                        <ui:insert name="content"/>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-7">
+                    <img id="img1" src="../resources/images/PhotobyDanGoldonUnsplash.jpg" alt="Vegies"></img>
+                </div>
+
+            </div>
+        </section>
+        
+        <section>
+            <footer>
+                <div class="col-xs-12 col-sm-12 col-md-6 container-fluid">
+                    <p class="padding"> Created by</p>
+                    <p class="padding">Contact us</p>
+                    <p class="padding">Back to the top</p>
+                    <p class="padding">Give us feedback</p>
+                </div>
+            </footer>
+        </section>
+
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+
+
+        <h:outputScript name="bootstrap-4.1.0-dist/umd/popper.min.js"/>   
+        <h:outputScript name="bootstrap-4.1.0-dist/js/bootstrap.min.js"/>
+        <h:outputScript name="js/mini-js.js"/>
+    </h:body>
+</html>
+
